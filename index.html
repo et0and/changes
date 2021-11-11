@@ -10,7 +10,7 @@
 <div id="inputsContainer">
 	<div id="textInput">
 		<h3>易經:</h3>
-		<textarea id="textAreaInput" >For Haines’s chapbook. No-one here to hear. Tonight deftly amid wild
+		<textarea id="textAreaInput" cols="80">For Haines’s chapbook. No-one here to hear. Tonight deftly amid wild
 drink and talk, to pierce the polished mail of his mind. What then? A
 jester at the court of his master, indulged and disesteemed, winning a
 clement master’s praise. Why had they chosen all that part? Not wholly
@@ -121,15 +121,19 @@ gabbling gaily:
 	<br>
 
 	<div id="textOutput">
-		<textarea id="textAreaOutput" ></textarea>
+		<textarea id="textAreaOutput" cols="80"></textarea>
 		<br>
 		<span>Number of words to output: </span>
 		<input type="number" name="numberOfWords" id="numberOfWords" value="10">
 		<button onclick="outputFromModel()">Output</button>
-	</div>
+<button id="generate" onclick="markov.core.generate()">Generate gibberish!</button><p></p> 
+</div> 
 </div>
 
 <script type="text/javascript" src="markov-text.js"></script>
 <script type="text/javascript" src="markov-text-example.js"></script>
+
+<script type="text/javascript" src="markov.js"></script>
+
 </body>
 </html>
