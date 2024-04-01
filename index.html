@@ -1,40 +1,31 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Dadadata</title>
-<meta content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0" name="viewport">
-<link href="normalize.css" rel="stylesheet" type="text/css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dadadata</title>
 </head>
 <body>
+    <h1>Dadadata</h1>
+    <button onclick="generateText()">Generate Text</button>
+    <p id="generatedText"></p>
 
-<div id="inputsContainer">
-	<div id="textInput">
-		<textarea id="textAreaInput" cols="25" rows="25">
- </textarea>
-		<br>
-		<button onclick="learnFromInput()">Learn from input</button>
-		<button onclick="resetModel()">Reset Markov model</button>
-	
-	</div>
+    <script src="markov.js"></script>
+    <script>
+        let markovModel;
 
-	<br>
-	<hr>
-	<br>
+        fetch('text.json')
+            .then(response => response.json())
+            .then(data => {
+                const text = data.text;
+                markovModel = new MarkovText(2, text);
+            })
+            .catch(error => console.error('Error:', error));
 
-	<div id="textOutput">
-		<textarea id="textAreaOutput" cols="25" rows="25"></textarea>
-		<br>
-		<span>Number of words to output: </span>
-		<input type="number" name="numberOfWords" id="numberOfWords" value="10">
-		<button onclick="outputFromModel()">Output</button>
-<!--button id="generate" onclick="markov.core.generate()">Generate gibberish!</button><p></p--> 
-</div> 
-</div>
-
-<script type="text/javascript" src="markov-text.js"></script>
-<script type="text/javascript" src="markov-text-example.js"></script>
-
-<script type="text/javascript" src="markov.js"></script>
-
+        function generateText() {
+            const generatedText = markovModel.output(20);
+            document.getElementById('generatedText').textContent = generatedText;
+        }
+    </script>
 </body>
 </html>
