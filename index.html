@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dadadata</title>
+    <title>Acorn</title>
 </head>
 <body>
-    <h1>Dadadata</h1>
-    <button onclick="generateText()">Generate Text</button>
+    <h1>🌳</h1>
+    <button id="generateButton" disabled>Generate Text</button>
     <p id="generatedText"></p>
 
     <script src="markov.js"></script>
@@ -19,8 +19,12 @@
             .then(data => {
                 const text = data.text;
                 markovModel = new MarkovText(2, text);
+                document.getElementById('generateButton').disabled = false;
             })
             .catch(error => console.error('Error:', error));
+
+        const generateButton = document.getElementById('generateButton');
+        generateButton.addEventListener('click', generateText);
 
         function generateText() {
             const generatedText = markovModel.output(20);
